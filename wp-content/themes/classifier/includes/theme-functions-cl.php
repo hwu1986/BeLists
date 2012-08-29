@@ -245,7 +245,7 @@ function colabs_pos_currency($price_out, $price_type = '') {
 /*-----------------------------------------------------------------------------------*/
 /*  Breadcrumb for the top of pages        */
 /*-----------------------------------------------------------------------------------*/
-function colabs_cl_breadcrumb($args) {
+function colabs_cl_breadcrumb($args = null) {
 	global $post;
 
     $colabs_abbr = get_option('colabs_shortname');
