@@ -4,7 +4,7 @@ Theme URI: http://colorlabsproject.com
 Description: Classified Ads Wordpress Theme created by <a href="http://colorlabsproject.com">ColorLabs & Company</a> 
 Author: ColorLabs & Company
 Author URI: http://colorlabsproject.com/
-Version: 1.2.3
+Version: 1.2.4
 Tags: Ads, two column, theme panel, app
 */
 /* CSS Reset
@@ -3118,6 +3118,7 @@ article.entry {
 /* For Mobile Phones. Orientation: landscape | portrait
 ------------------------------------------------------------------- */
 @media only screen and (max-width: 767px) {
+  .dk_options_inner, .dk_touch .dk_options { max-height:none!important }
   .select-menu {
   	display: block;
   	width:100%;

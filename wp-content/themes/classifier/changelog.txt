@@ -1,12 +1,16 @@
 /*
     Theme Name: Classifier
     Theme URI: http://demo.colorlabsproject.com/classifier/
-	Last Update Date: 09 August 2012
+	Last Update Date: 24 August 2012
 */
 
 /**** Changelog ****/
 
 "Please backup your theme pack files at first before you update the theme into the latest version"
+
+2012.08.24 - Version 1.2.4
+- File Affected: style.css
+- Fixed style for all category in mobile device
 
 2012.08.09 - Version 1.2.3
 - File Affected: All files
