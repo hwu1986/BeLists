@@ -24,7 +24,7 @@
         
       </div>
       <!-- /.content-tab -->
-
+<?php /* ?>
     <div class="content-tab">
         <ul class="tab-nav">
           <li><a href="#latest-news"><?php _e('Latest Posts','colabsthemes'); ?></a></li>
@@ -73,6 +73,20 @@
         </div>
         <!-- /#latest-news -->
         
+    </div>
+    <?php */ ?>
+    <div class="content-tab">
+      <script type="text/javascript"><!--
+google_ad_client = "ca-pub-3597410205942815";
+/* New BeList Home Bottom */
+google_ad_slot = "6163368619";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
     </div>
     <!-- .content-tab -->    
     
