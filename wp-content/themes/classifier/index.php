@@ -76,17 +76,28 @@
     </div>
     <?php */ ?>
     <div class="content-tab">
+      <?php if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')) { ?>
       <script type="text/javascript"><!--
-google_ad_client = "ca-pub-3597410205942815";
-/* New BeList Home Bottom */
-google_ad_slot = "6163368619";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+        google_ad_client = "ca-pub-3597410205942815";
+        /* New BeLists Mobile Home Mobile*/
+        google_ad_slot = "8239346391";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        //-->
+      </script>
+      <?php } else { ?>
+      <center>
+      <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-3597410205942815";
+        /* New BeList Home Bottom Web*/
+        google_ad_slot = "6163368619";
+        google_ad_width = 728;
+        google_ad_height = 90;
+        //-->
+      </script>
+    </center>
+      <?php } ?>
+      <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
     </div>
     <!-- .content-tab -->    
     
