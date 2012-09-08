@@ -55,22 +55,22 @@ global $current_user, $wpdb;
             <label><?php _e('Address','colabsthemes');?>: <span class="colour">*</span></label>
             <input name="colabs_location" id="colabs_location" type="text" minlength="2" value="" class="text required" />
           </div>
-
+<!--
           <div class="input-text">
             <label><?php _e('Zip/Postal Code','colabsthemes');?>: <span class="colour">*</span></label>
             <input name="colabs_zipcode" id="colabs_zipcode" type="text" minlength="2" value="" class="text required" />
           </div>
-
+-->
           <div class="input-text">
             <label><?php _e('Email','colabsthemes');?>: </label>
             <input name="colabs_email" id="colabs_email" type="text" minlength="2" value="" class="text" />
           </div>
-          
+
           <div class="input-text">
             <label><?php _e('Website','colabsthemes');?>: </label>
             <input name="colabs_site" id="colabs_site" type="text" minlength="2" value="" class="text" />
           </div>
-          
+
           <div class="input-text">
             <label><?php _e('Phone','colabsthemes');?>: </label>
             <input name="colabs_phone" id="colabs_phone" type="text" minlength="2" value="" class="text" />
