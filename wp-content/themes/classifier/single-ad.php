@@ -59,6 +59,19 @@ jQuery(document).ready(function ($) {
         <?php colabsthemes_after_post_content(); ?>
 
       </article>
+
+      <!-- Moving contacts info under each ads post -->
+
+      <div class="listing-info listing-details">
+        <style>.inquiry-form {width: 80% !important;}</style>
+        <h4><?php _e('Contact','colabsthemes'); ?></h4>
+        <p class="contact_msg"><?php _e('To inquire about this ad listing, complete the form below to send a message to the ad poster.', 'colabsthemes') ?></p>
+            <?php include_once(TEMPLATEPATH . '/includes/sidebar-contact.php'); ?>
+      </div>
+
+      <!-- End of Contact Info -->
+
+
 	  <?php endwhile;endif;?>
       <!-- /.entry -->
         

@@ -174,9 +174,9 @@ function colabs_main_comment_form() {
     
 <?php
 }
-add_action('colabs_comments_form', 'colabs_main_comment_form');
-add_action('colabs_blog_comments_form', 'colabs_main_comment_form');
-add_action('colabs_page_comments_form', 'colabs_main_comment_form');
+//add_action('colabs_comments_form', 'colabs_main_comment_form');
+//add_action('colabs_blog_comments_form', 'colabs_main_comment_form');
+//add_action('colabs_page_comments_form', 'colabs_main_comment_form');
 
 
 function commenter_link() {

@@ -80,12 +80,13 @@
         
       </div>
       <!-- /.listing-details -->
-    
+    <?php /* ?>
     <div class="listing-info listing-details">
         <h4><?php _e('Contact','colabsthemes'); ?></h4>
         <p class="contact_msg"><?php _e('To inquire about this ad listing, complete the form below to send a message to the ad poster.', 'colabsthemes') ?></p>
             <?php include_once(TEMPLATEPATH . '/includes/sidebar-contact.php'); ?>
     </div>
+    <?php */ ?>
     <!-- /.listing-details -->
 
 <?php } ?>
