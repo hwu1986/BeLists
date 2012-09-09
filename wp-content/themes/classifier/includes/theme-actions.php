@@ -124,8 +124,9 @@ function colabs_blog_post_meta_footer() {
    
     <?php 
 }
-add_action('colabsthemes_after_blog_post_content', 'colabs_blog_post_meta_footer');
-add_action('colabsthemes_after_post_content', 'colabs_blog_post_meta_footer');
+
+//add_action('colabsthemes_after_blog_post_content', 'colabs_blog_post_meta_footer');
+//add_action('colabsthemes_after_post_content', 'colabs_blog_post_meta_footer');
 
 
 /**
