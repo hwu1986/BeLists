@@ -75,12 +75,12 @@ global $current_user, $wpdb;
             <label><?php _e('Phone','colabsthemes');?>: </label>
             <input name="colabs_phone" id="colabs_phone" type="text" minlength="2" value="" class="text" />
           </div>
-                    
+  <!--          
           <div class="input-text">
             <label><?php _e('Tags','colabsthemes');?>: <span class="colour">*</span><span class="label-helper">(<?php _e('separate tags with coma','colabsthemes');?>)</span></label>
             <input name="tags_input" id="tags_input" type="text" minlength="2" value="" class="text required"/>
           </div>
-          
+  -->
         </div>
         <!-- /.col6 -->
 
