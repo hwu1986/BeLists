@@ -2,6 +2,7 @@
 
   <?php get_template_part('includes/featured','list'); ?>
 
+  <?php /* ?>
   <div class="row main-container">
 
     <div class="main-content col9">
@@ -74,12 +75,11 @@
         <!-- /#latest-news -->
         
     </div>
-    <?php */ ?>
+    <?php /* ?>
     <div class="content-tab">
       <?php if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')) { ?>
       <script type="text/javascript"><!--
         google_ad_client = "ca-pub-3597410205942815";
-        /* New BeLists Mobile Home Mobile*/
         google_ad_slot = "8239346391";
         google_ad_width = 320;
         google_ad_height = 50;
@@ -89,7 +89,6 @@
       <center>
       <script type="text/javascript"><!--
         google_ad_client = "ca-pub-3597410205942815";
-        /* New BeList Home Bottom Web*/
         google_ad_slot = "6163368619";
         google_ad_width = 728;
         google_ad_height = 90;
@@ -107,6 +106,7 @@
     <?php get_sidebar(); ?>
 
   </div>
+  <?php */ ?>
   <!-- /.main-container -->
 
 <?php get_footer(); ?>
