@@ -1520,6 +1520,8 @@ function colabs_meta(){
 			echo '<meta name="robots" content="'. $index .', '. $follow .'" />' . "\n";
 		}
 		
+		global $description;
+
 		/* Description */
 		$description = '';
 		
@@ -1618,9 +1620,11 @@ function colabs_meta(){
 		
 		} // End FOREACH Loop
 		
+		/* Move this to og_meta function
 		if(!empty($description)){
 			echo '<meta name="description" content="'.$description.'" />' . "\n";
 		}
+		*/
 		
 		/* Keywords */
 		$keywords = '';
@@ -3412,7 +3416,9 @@ if( !class_exists('WP_Theme') ){
 /*  Open Graph Meta Function    */
 /*-----------------------------------------------------------------------------------*/
 if (!function_exists('og_meta')) {
-function og_meta(){ ?>
+function og_meta(){ 
+	global $description;
+	?>
 	<?php if ( is_home() && get_option( 'colabs_og_enable' ) == '' ) { ?>
 	<meta property="og:title" content="<?php echo bloginfo('name');; ?>" />
 	<meta property="og:type" content="author" />
@@ -3420,7 +3426,7 @@ function og_meta(){ ?>
 	<meta property="og:image" content="<?php echo get_option('colabs_og_img'); ?>"/>
 	<meta property="og:site_name" content="<?php echo get_option('colabs_og_sitename'); ?>" />
 	<meta property="fb:admins" content="<?php echo get_option('colabs_og_admins'); ?>" />
-	<meta property="og:description" content="<?php echo get_option('blogdescription '); ?>" />
+	<meta property="og:description" content="<?php echo $description; ?>" />
 	<?php } ?>
 	
 	<?php if ( ( is_page() || is_single() ) && get_option( 'colabs_og_enable' ) == '' ) { ?>
@@ -3440,7 +3446,10 @@ function og_meta(){ ?>
 	<?php } ?>
     
     <meta name="viewport" content="width=1024,maximum-scale=1.0" />
-<?php
+<?php 	
+	if(!empty($description)){
+		echo '<meta name="description" content="'.$description.'" />' . "\n";
+	}
 }}
 
 /*-----------------------------------------------------------------------------------*/
