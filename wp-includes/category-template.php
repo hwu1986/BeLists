@@ -831,7 +831,12 @@ class Walker_Category extends Walker {
 		else
 			$link .= 'title="' . esc_attr( strip_tags( apply_filters( 'category_description', $category->description, $category ) ) ) . '"';
 		$link .= '>';
-		$link .= $cat_name . '</a>';
+		$link .= $cat_name;
+
+		if ( !empty($show_count) )
+			$link .= ' (' . intval($category->count) . ')';
+
+		$link .= '</a>';
 
 		if ( !empty($feed_image) || !empty($feed) ) {
 			$link .= ' ';
@@ -862,9 +867,6 @@ class Walker_Category extends Walker {
 			if ( empty($feed_image) )
 				$link .= ')';
 		}
-
-		if ( !empty($show_count) )
-			$link .= ' (' . intval($category->count) . ')';
 
 		if ( 'list' == $args['style'] ) {
 			$output .= "\t<li";
