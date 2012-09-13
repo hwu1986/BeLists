@@ -50,11 +50,12 @@ global $current_user, $wpdb;
             <label><?php _e('Price','colabsthemes');?>: <span class="colour">*</span></label>
             <input name="colabs_price" id="colabs_price" type="text" minlength="2" value="" class="text required" />
           </div>
-
+<!--
           <div class="input-text">
             <label><?php _e('Address','colabsthemes');?>: <span class="colour">*</span></label>
             <input name="colabs_location" id="colabs_location" type="text" minlength="2" value="" class="text required" />
           </div>
+-->
 <!--
           <div class="input-text">
             <label><?php _e('Zip/Postal Code','colabsthemes');?>: <span class="colour">*</span></label>
