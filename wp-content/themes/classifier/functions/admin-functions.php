@@ -1520,8 +1520,6 @@ function colabs_meta(){
 			echo '<meta name="robots" content="'. $index .', '. $follow .'" />' . "\n";
 		}
 		
-		global $description;
-
 		/* Description */
 		$description = '';
 		
@@ -1620,11 +1618,9 @@ function colabs_meta(){
 		
 		} // End FOREACH Loop
 		
-		/* Move this to og_meta function
 		if(!empty($description)){
 			echo '<meta name="description" content="'.$description.'" />' . "\n";
 		}
-		*/
 		
 		/* Keywords */
 		$keywords = '';
@@ -3416,9 +3412,7 @@ if( !class_exists('WP_Theme') ){
 /*  Open Graph Meta Function    */
 /*-----------------------------------------------------------------------------------*/
 if (!function_exists('og_meta')) {
-function og_meta(){ 
-	global $description;
-	?>
+function og_meta(){ ?>
 	<?php if ( is_home() && get_option( 'colabs_og_enable' ) == '' ) { ?>
 	<meta property="og:title" content="<?php echo bloginfo('name');; ?>" />
 	<meta property="og:type" content="author" />
@@ -3426,7 +3420,7 @@ function og_meta(){
 	<meta property="og:image" content="<?php echo get_option('colabs_og_img'); ?>"/>
 	<meta property="og:site_name" content="<?php echo get_option('colabs_og_sitename'); ?>" />
 	<meta property="fb:admins" content="<?php echo get_option('colabs_og_admins'); ?>" />
-	<meta property="og:description" content="<?php echo $description; ?>" />
+	<meta property="og:description" content="<?php echo get_option('blogdescription '); ?>" />
 	<?php } ?>
 	
 	<?php if ( ( is_page() || is_single() ) && get_option( 'colabs_og_enable' ) == '' ) { ?>
@@ -3446,10 +3440,7 @@ function og_meta(){
 	<?php } ?>
     
     <meta name="viewport" content="width=1024,maximum-scale=1.0" />
-<?php 	
-	if(!empty($description)){
-		echo '<meta name="description" content="'.$description.'" />' . "\n";
-	}
+<?php
 }}
 
 /*-----------------------------------------------------------------------------------*/
@@ -3523,4 +3514,41 @@ if (!$data || $data == ''){
 
 }}
 
+/*-----------------------------------------------------------------------------------*/
+/* colabs_feedburner_link() */
+/*-----------------------------------------------------------------------------------*/ 
+/**
+ * colabs_feedburner_link()
+ *
+ * Replace the default RSS feed link with the Feedburner URL, if one
+ * has been provided by the user.
+ *
+ * @package CoLabsFramework
+ * @subpackage Filters
+ */
+ 
+add_filter( 'feed_link', 'colabs_feed_link', 10 );
+
+if ( ! function_exists( 'colabs_feed_link' ) ) { 
+	function colabs_feed_link ( $output, $feed = null ) {	
+		global $colabs_options;	
+		$default = get_default_feed();	
+		if ( ! $feed ) $feed = $default;		
+		if ( $colabs_options[ 'colabs_feedlinkurl' ] && ( $feed == $default ) && ( ! stristr( $output, 'comments' ) ) ) $output = $colabs_options[ 'colabs_feedlinkurl' ];	
+		return $output;	
+	} // End colabs_feedburner_link()
+}
+
+if ( ! function_exists( 'colabs_custom_comments_rss' ) ) { 
+	function colabs_custom_comments_rss( $post_id = '', $feed = '',$text = '' ) {
+		global $colabs_options;
+		$url = get_post_comments_feed_link($post_id, $feed);
+		if ( empty($text) )
+		$text = __('Comments Feed','colabsthemes');
+		if ( $colabs_options[ 'colabs_feedlinkcomments' ] !='') $url= $colabs_options[ 'colabs_feedlinkcomments' ];
+		$commentrss = '<a href="'.$url.'">'.$text.'</a>';
+		return $commentrss;
+	}
+}
+add_filter('post_comments_feed_link_html','colabs_custom_comments_rss');
 ?>

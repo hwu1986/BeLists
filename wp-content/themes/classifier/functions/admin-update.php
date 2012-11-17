@@ -23,7 +23,6 @@ TABLE OF CONTENTS
 function colabsthemes_framework_update_page(){
 ?>
 <div class="wrap colabs_notice">
-	<h2></h2>
 
 <div id="colabs_options" class="wrap<?php if (get_bloginfo('text_direction') == 'rtl') { echo ' rtl'; } ?>">
 
@@ -125,7 +124,7 @@ function colabsthemes_framework_update_page_set(){
                 <p><?php _e("We recommend backing up your theme files before updating.","colabsthemes"); ?></p>
                 <p>&rarr; <strong><?php _e("Your version:","colabsthemes"); ?></strong> <?php echo $upd['localversion']; ?></p>
 
-                <p>&rarr; <strong><?php _e("Current Version:","colabsthemes"); ?></strong> <?php echo $upd['remoteversion']; ?></p>
+                <p>&rarr; <strong><?php _e("New Version:","colabsthemes"); ?></strong> <?php echo $upd['remoteversion']; ?></p>
 
                 <input type="submit" class="button" value="Update Framework" />
                 <?php } else { ?>
@@ -141,46 +140,49 @@ function colabsthemes_framework_update_page_set(){
 
 function colabsthemes_themes_update_page_set(){
 						
-						colabs_theme_update();
-						$cookiefile=get_theme_root() . '/cookie.txt';
-						$check_cookie=extractCookies(file_get_contents($cookiefile));
-						if ($check_cookie!=true){
-							if($_POST['login_attempt_id']=='1342424497'){
-									_e('<div id="colabs-no-archive-warning" class="updated fade" style="display:block;"><p><strong><i>The user name or password is incorrect</i></strong></p></div>','colabsthemes');
-							}
-            ?>
-							<p><?php _e('Please login with your member account before update your theme','colabsthemes');?></p>
-							 <p><?php _e("We recommend backing up your theme files before updating.","colabsthemes"); ?></p>
-							<form method="post"  enctype="multipart/form-data" id="colabsform" name="login" class="colabs-login-form">
-									<p>
-											<label class="element-title" for="login"><?php _e('E-Mail Address or Username:','colabsthemes');?></label> 
-											<input id="login" name="amember_login" size="15" value="" type="text">
-									</p>
-									<p>
-											 <label class="element-title" for="pass"><?php _e('Password:','colabsthemes');?></label> 
-											 <input id="pass" name="amember_pass" size="15" type="password">
-									</p>
-									<input type="submit" name="colabs_theme_login" value="Log In" class="button" />
-									<input type="hidden" value="1342424497" name="login_attempt_id">
-									
-							</form>
-							<p><?php _e('<a href="http://colorlabsproject.com/member/member/#am-forgot-block" target="_blank">Forgot Password?</a>','colabsthemes');?></p>
-            <?php 
-						}else{
-							$current_theme = wp_get_theme();
-							$theme_name = get_option( 'colabs_themename' );
-							$storefront_theme = colabs_get_fw_version('http://colorlabsproject.com/updates/'.strtolower($theme_name).'/changelog.txt'); 
-							$check_theme_update = version_compare( $storefront_theme, $current_theme->Version, '>' );
-							$details_url = add_query_arg(array('TB_iframe' => 'true', 'width' => 1024, 'height' => 800), 'http://colorlabsproject.com/updates/'.strtolower($theme_name).'/changelog.txt');
-							$update_url = esc_url( add_query_arg(array( 'page' => 'colabsthemes_framework_update', 'action' => 'colabs-upgrade-theme')) );
-							$update_onclick = 'onclick="if ( confirm(\'' . esc_js( __("Updating this theme will lose any customizations you have made. 'Cancel' to stop, 'OK' to update.") ) . '\') ) {return true;}return false;"';			
-							$relogin = esc_url( add_query_arg(array( 'page' => 'colabsthemes_framework_update','relogin'=>'true' )) );
-							if($check_theme_update==1){
-								printf( __('<p>There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%1$s">View version %3$s details</a> or <a href="%4$s" %5$s >update now</a> or <a href="%6$s" >re-login</a>.</p>'), $theme_name, $details_url, $storefront_theme, $update_url, $update_onclick, $relogin );
-							}else{
-								printf( __('<p>You have the latest version of %1$s. <a href="%2$s" class="thickbox" title="%1$s">View version %3$s details</a> or <a href="%4$s" >re-login</a>.</p>'), $theme_name, $details_url, $storefront_theme, $relogin );
-							}
-						}
+	colabs_theme_update();
+	$cookiefile=get_theme_root() . '/cookie.txt';
+	$check_cookie=extractCookies(file_get_contents($cookiefile));
+	if ($check_cookie!=true){
+		if($_POST['login_attempt_id']=='1342424497'){
+			_e('<div id="colabs-no-archive-warning" class="updated fade" style="display:block;"><p><strong><i>The user name or password is incorrect</i></strong></p></div>','colabsthemes');
+		}?>
+		<p><?php _e('Please login with your ColorLabs account before updating your theme.','colabsthemes');?></p>
+		<form method="post"  enctype="multipart/form-data" id="colabsform" name="login" class="colabs-login-form">
+			<p>
+				<label class="element-title" for="login"><?php _e('E-Mail Address or Username:','colabsthemes');?></label> 
+				<input id="login" name="amember_login" size="15" value="" type="text">
+			</p>
+			<p>
+				<label class="element-title" for="pass"><?php _e('Password:','colabsthemes');?></label> 
+				<input id="pass" name="amember_pass" size="15" type="password">
+			</p>
+			<p style="margin-top: 25px;">
+			<input type="submit" name="colabs_theme_login" value="Log In" class="button" />
+			<input type="hidden" value="1342424497" name="login_attempt_id">	
+			</p>			
+		</form>
+		<p><?php _e('<a href="http://colorlabsproject.com/member/member/#am-forgot-block" target="_blank">Forgot Password?</a>','colabsthemes');?></p>
+    <?php }else{
+		$current_theme = wp_get_theme();
+		$theme_name = get_option( 'colabs_themename' );
+		$storefront_theme = colabs_get_fw_version('http://colorlabsproject.com/updates/'.strtolower($theme_name).'/changelog.txt'); 
+		$check_theme_update = version_compare( $storefront_theme, $current_theme->Version, '>' );
+		$details_url = add_query_arg(array('TB_iframe' => 'true', 'width' => 1024, 'height' => 800), 'http://colorlabsproject.com/updates/'.strtolower($theme_name).'/changelog.txt');
+		$update_url = esc_url( add_query_arg(array( 'page' => 'colabsthemes_framework_update', 'action' => 'colabs-upgrade-theme')) );
+		$update_onclick = 'onclick="if ( confirm(\'' . esc_js( __("I understand that upgrade may overwrite any customizations done to the theme files. \nI have already made a backup of my theme. Click 'OK' to agree.") ) . '\') ) {return true;}return false;"';			
+		$relogin = esc_url( add_query_arg(array( 'page' => 'colabsthemes_framework_update','relogin'=>'true' )) );
+		$backup = esc_url( add_query_arg(array( 'page' => 'colabsthemes_framework_update','theme_backup'=>'true' )) );
+		if($check_theme_update==1){
+			printf( __('<h3>An updated version of %1$s is available.</h3>'), $theme_name );
+			printf( __('<p>You can update to <a href="%3$s" class="thickbox">%1$s %2$s</a> automatically.</p><p> To use the automatic update and backup feature, cURL must be enabled on your hosting. If cURL is disabled, please contact your hosting.</p><p>Updating this theme will lose any customizations you have made. We recommend backing up your theme files before updating.</p><p>Please backup your theme by clicking the Backup button before updating your theme. Backup (.zip) will be stored in <code>wp-content/themes/</code>.</p>'), $theme_name,$storefront_theme, $details_url );
+			printf( __('<p style="margin-top: 30px;"><a class="button" href="%1$s" %2$s >Update Now</a>&nbsp;&nbsp;&nbsp;<a href="%3$s" class="button">Backup</a></p>'), $update_url, $update_onclick,$backup );
+								
+		}else{
+			printf( __('<h3>You have the latest version of %1$s.</h3><p>&rarr; <a href="%2$s" class="thickbox" title="%1$s">View version %3$s details</a></p>'), $theme_name, $details_url, $storefront_theme );
+			printf( __('<p>Click the Backup button to back up your theme files. Backup (.zip) will be stored in <code>wp-content/themes/</code></p><p style="margin-top: 30px;"><a class="button" href="%1$s" >Backup</a></p>'), $backup );
+		}
+	}
 }
 
 function colabsthemes_framework_update_check(){
@@ -318,8 +320,16 @@ function colabsthemes_framework_update_head(){
 			echo "<div id='framework-upgraded' class='updated fade'><p>". __("New framework successfully downloaded, extracted and updated.","colabsthemes")."</p></div>";
 		}
 		add_action( 'admin_notices', 'colabsthemes_framework_updated_success' );
-
+		
+		$adminurl =admin_url( 'admin.php?page=colabsthemes_framework_update');
+		?>
+					<script type="text/javascript">
+						window.location.href = "<?php echo $adminurl;?>";
+					</script>
+		<?php
 		}
+		
+		
 	}
 	} //End user input save part of the update
  }
@@ -397,7 +407,7 @@ function colabs_theme_check(){
 	<div class="colabs-save-popup" id="colabs-update-theme" style="display:block;">
 		<div class="colabs-save-save">
 			<?php 
-			printf( __('There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%1$s">View version %3$s details</a> or <a href="%4$s" >Go to update</a>.'), $theme_name, $details_url, $storefront_theme, $update_url);
+			printf( __('There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%1$s">View version %3$s details</a> or <a href="%4$s" >update now</a>.'), $theme_name, $details_url, $storefront_theme, $update_url);
 			?>
 		</div>
 	</div>
@@ -410,7 +420,6 @@ function colabs_theme_update(){
 	
 	$theme_name = get_option( 'colabs_themename' );
 	$file_url = 'http://colorlabsproject.com/member/downloads/'.strtolower($theme_name).'/'.strtolower($theme_name).'.zip';
-	//$file_url = 'http://colorlabsproject.com/member/downloads/rpg/rpg.zip';
 	
 	// Get Cookie
 	// ----------	
@@ -454,7 +463,7 @@ function colabs_theme_update(){
 	// Download files
 	// --------------
 	$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
-		if ( ! current_user_can('update_themes') )
+	if ( ! current_user_can('update_themes') )
 			wp_die(__('You do not have sufficient permissions to update themes for this site.'));
 	if ( 'colabs-upgrade-theme' == $action ) {
 		$cookiefile=get_theme_root() . '/cookie.txt';
@@ -506,7 +515,8 @@ function colabs_theme_update(){
 				
 				if($error == 'incompatible_archive') {
 				//The source file was not found or is invalid
-					echo "<div id='colabs-no-archive-warning' class='updated fade' ><p>". __("You have no access. Please Visit <a href='http://colorlabsproject.com/member/signup' target='_blank'>order page</a> to order additional subscriptions.","colabsthemes")."</p></div>";
+					$signin = esc_url( add_query_arg(array( 'page' => 'colabsthemes_framework_update','relogin'=>'true', 'action' => '' )) );
+					echo "<div id='colabs-no-archive-warning' class='updated fade' ><p>". __("This account is ineligible for the update. Please <a href='http://colorlabsproject.com/member/signup' target='_blank'>renew your subscription</a> or <a href='".$signin."'>sign in</a> with a different account.","colabsthemes")."</p></div>";
 				}
 				if($error == 'empty_archive') {
 						echo "<div id='colabs-empty-archive-warning' class='updated fade' ><p>". __("Failed: Empty Archive","colabsthemes")."</p></div>";
@@ -519,6 +529,14 @@ function colabs_theme_update(){
 				}
 
 				return;
+			}else{
+				echo "<div id='colabs-no-archive-warning' class='updated fade'><p>". __("Update process sucessfully","colabsthemes")."</p></div>";
+				$adminurl =admin_url( 'admin.php?page=colabsthemes_framework_update');
+				?>
+					<script type="text/javascript">
+						window.location.href = "<?php echo $adminurl;?>";
+					</script>
+				<?php
 			}
 		}
 	}
@@ -552,8 +570,87 @@ function colabs_theme_update(){
 				window.location.href = "<?php echo $adminurl;?>";
 			</script>
 	<?php }
+	
+	//Backup
+	//---------
+	$theme_backup = isset($_REQUEST['theme_backup']) ? $_REQUEST['theme_backup'] : 'false';
+	if($theme_backup=='true'){
+		$filesystem = WP_Filesystem($cred);
+
+		if($filesystem == false && $_POST['upgrade'] != 'Proceed'){
+
+			$method = get_filesystem_method();
+			echo "<div id='filesystem-warning' class='updated fade' style='display:block;'><p>". __("Failed: Filesystem preventing downloads.","colabsthemes")." ( ". $method .")</p></div>";
+			return;
+		}
+				
+		global $wp_filesystem;
+				
+		$to = $wp_filesystem->wp_content_dir() . "themes/";
+		$zip = new ZipArchive();
+		$zip->open($to.'backup_'.strtolower($theme_name).'_'.time().'.zip', ZipArchive::CREATE);
+
+		$dirName = $to.strtolower($theme_name);
+
+		if (!is_dir($dirName)) {
+		throw new Exception('Directory ' . $dirName . ' does not exist');
+		}
+
+		$dirName = realpath($dirName);
+		if (substr($dirName, -1) != '/') {
+		$dirName.= '/';
+		}
+
+		/*
+		* NOTE BY danbrown AT php DOT net: A good method of making
+		* portable code in this case would be usage of the PHP constant
+		* DIRECTORY_SEPARATOR in place of the '/' (forward slash) above.
+		*/
+
+		$dirStack = array($dirName);
+		//Find the index where the last dir starts
+		$cutFrom = strrpos(substr($dirName, 0, -1), '/')+1;
+		$cutFrom = strrpos($dirName, '/')+1;
+
+		while (!empty($dirStack)) {
+		$currentDir = array_pop($dirStack);
+		$filesToAdd = array();
+
+		$dir = dir($currentDir);
+		while (false !== ($node = $dir->read())) {
+		if (($node == '..') || ($node == '.')) {
+		continue;
+		}
+		if (is_dir($currentDir . $node)) {
+		array_push($dirStack, $currentDir . $node . '/');
+		}
+		if (is_file($currentDir . $node)) {
+		$filesToAdd[] = $node;
+		}
+		}
+		
+		$localDir = substr($currentDir, $cutFrom);
+		$zip->addEmptyDir($localDir);
+		
+		foreach ($filesToAdd as $file) {
+			$zip->addFile($currentDir . $file, $localDir . $file);
+		}
+		}
+
+		$zip->close();
+
+		echo "<div id='colabs-no-archive-warning' class='updated fade'><p>". __("Backup process sucessfully","colabsthemes")."</p></div>";
+		
+		$adminurl =admin_url( 'admin.php?page=colabsthemes_framework_update');
+			?>
+			<script type="text/javascript">
+				window.location.href = "<?php echo $adminurl;?>";
+			</script>
+		<?php	
+	}
 }
 }
+
 
 function extractCookies($string) {
     $member_cookie = false;

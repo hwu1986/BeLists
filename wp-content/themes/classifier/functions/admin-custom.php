@@ -214,7 +214,7 @@ function colabsthemes_metabox_create($post,$callback) {
         	        $output .= "\t".'<tr '.$colabs_class.'>';
         	        $output .= "\t\t".'<th class="colabs_metabox_names"><label for="'.esc_attr( $colabs_id ).'">'.$colabs_metabox['label'].'</label></th>'."\n";
         	        $output .= "\t\t".'<td><input type="checkbox" '.$checked.' class="colabs_input_checkbox" value="true"  id="'.esc_attr( $colabs_id ).'" name="'. esc_attr( $colabs_name ) .'" />';
-        	        $output .= '<label class="colabs_metabox_desc" style="display:inline">'.$colabs_metabox['desc'].'</label></td>'."\n";
+        	        $output .= '<label class="colabs_metabox_desc" style="display:inline">&nbsp;'.$colabs_metabox['desc'].'</label></td>'."\n";
         	        $output .= "\t".'</tr>'."\n";
         	    }
 				elseif ($colabs_metabox['type'] == 'multicheck'){
@@ -232,7 +232,7 @@ function colabsthemes_metabox_create($post,$callback) {
         	            if( in_array( $id,$colabs_metaboxvalue_arr ) ) { $checked = ' checked="checked"';} else {$checked='';}
 
         	                $output .= '<input type="checkbox" '.$checked.' value="' . $id . '" class="colabs_input_multicheck"  name="'.$id.'" />';
-        	                $output .= '<span class="colabs_input_multicheck_desc" style="display:inline">'. $option .'</span><div class="colabs_spacer"></div>';
+        	                $output .= '<span class="colabs_input_multicheck_desc" style="display:inline">&nbsp;'. $option .'</span><div class="colabs_spacer"></div>';
         	            }
 
                         $output .= '<input style="display:none" class="colabs_input_multicheck" type="text" value="'.esc_attr( $colabs_metaboxvalue ).'" name="'.$colabs_name.'" id="'.esc_attr( $colabs_id ).'"/>';
@@ -255,7 +255,7 @@ function colabsthemes_metabox_create($post,$callback) {
         	            if($colabs_metaboxvalue == $id) { $checked = ' checked';} else {$checked='';}
 
         	                $output .= '<input type="radio" '.$checked.' value="' . $id . '" class="colabs_input_radio"  name="'. esc_attr( $colabs_name ) .'" />';
-        	                $output .= '<span class="colabs_input_radio_desc" style="display:inline">'. $option .'</span><div class="colabs_spacer"></div>';
+        	                $output .= '<span class="colabs_input_radio_desc" style="display:inline">&nbsp;'. $option .'</span><div class="colabs_spacer"></div>';
         	            }
         	            $output .= "\t".'</tr>'."\n";
         	         }
@@ -643,12 +643,15 @@ function colabsthemes_metabox_header(){
                 });
         });
 		
-		// Jquery multicheck for ticket
-        jQuery('.ticket input').change(function(){
-          var values = jQuery('.ticket input:checked').map(function(){
-            return this.value;
-          }).get();
-          jQuery('.ticket :text').val( values.join(', ') );
+		// Jquery multicheck
+        jQuery('.multicheck').each(function(){
+            var $el = jQuery(this);
+            $el.find('input').change(function(){
+                var values =  $el.find('input:checked').map(function(){
+                    return this.value;
+                }).get();
+                $el.find(':text').val( values.join(', ') );
+            });
         });
 		
         jQuery( '.colabs_metaboxes_table th:last, .colabs_metaboxes_table td:last').css( 'border','0' );

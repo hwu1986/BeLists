@@ -361,7 +361,7 @@ function colabsthemes_options_page(){
 				</ul>		
 			</div>
 			<div id="panel-content">
-                <div class="group help-block"> <p><?php _e("Drag icon on the left and Drop it here to customize","colabsthemes"); ?></p> </div>
+                <div class="group help-block"> <p><?php _e("Drag an icon on the left and drop it here to customize","colabsthemes"); ?></p> </div>
 	        	<?php echo $return[0]; /* Settings */ ?>
 	        </div>
 	        	
